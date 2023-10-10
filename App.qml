@@ -6,4 +6,6 @@ Window {
     height: 800
     visible: true
     title: qsTr("Cloud Music Player")
+
+    TopBar {}
 }
