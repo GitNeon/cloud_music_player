@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtQuick.Layouts
 
 Window {
     width: 1200
@@ -7,5 +8,12 @@ Window {
     visible: true
     title: qsTr("Cloud Music Player")
 
-    TopBar {}
+    ColumnLayout {
+      anchors.fill: parent
+      spacing: 0
+      TopBar {}
+      Content {}
+      BottomBar {}
+    }
+
 }

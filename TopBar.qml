@@ -4,8 +4,9 @@ import QtQuick.Controls 2.5
 
 ToolBar {
     width: parent.width
+    Layout.fillWidth: true
     background: Rectangle {
-        color: "lightgray"
+        color: "#00AAAA"
     }
 
     RowLayout {

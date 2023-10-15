@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>App.qml</file>
         <file>TopBar.qml</file>
+        <file>Content.qml</file>
+        <file>BottomBar.qml</file>
     </qresource>
 </RCC>
