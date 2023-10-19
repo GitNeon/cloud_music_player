@@ -1,11 +1,11 @@
 import QtQuick 2.15
-import QtQuick.Layouts
-import QtQuick.Controls
+import QtQuick.Layouts 2.15
+import QtQuick.Controls 2.15
 
 Rectangle {
     Layout.fillWidth: true
     height: 60
-    color: '#00AAAA'
+    color: "#806e99a8"
 
     RowLayout {
         anchors.fill: parent
@@ -17,22 +17,22 @@ Rectangle {
             color: "transparent"
         }
 
-        Button {
-            icon.source: "/images/previous.png"
-            icon.width: 32
-            icon.height: 32
+        MusicIconButton {
+            id: prevButton
+            iconSource: "/images/previous.png"
+            toolTip: "上一首"
         }
 
-        Button {
-            icon.source: "/images/stop.png"
-            icon.width: 32
-            icon.height: 32
+        MusicIconButton {
+            id: stopButton
+            iconSource: "/images/stop.png"
+            toolTip: "停止播放"
         }
 
-        Button {
-            icon.source: "/images/next.png"
-            icon.width: 32
-            icon.height: 32
+        MusicIconButton {
+            id: nextButton
+            iconSource: "/images/next.png"
+            toolTip: "下一首"
         }
 
         Item {
@@ -71,13 +71,13 @@ Rectangle {
                     x: musicSlider.leftPadding
                     y: musicSlider.topPadding + musicSlider.availableHeight / 2 - height / 2
                     radius: 2
-                    color: "#ffffff"
+                    color: "#e9f4ff"
                     height: 4
 
                     Rectangle {
                         width: parent.width * musicSlider.visualPosition
                         height: parent.height
-                        color: "#21be2b"
+                        color: "#73a7ab"
                     }
                 }
                 handle: Rectangle {
@@ -85,7 +85,8 @@ Rectangle {
                        * musicSlider.visualPosition
                     y: musicSlider.topPadding + (musicSlider.availableHeight - height) / 2
                     radius: 20
-                    border.color: '#bdbebf'
+                    border.color: "#73a7ab"
+                    border.width: 0.5
                     implicitWidth: 10
                     implicitHeight: 10
                     color: musicSlider.pressed ? '#f0f0f0' : "#f6f6f6"
@@ -93,16 +94,12 @@ Rectangle {
             }
         }
 
-        Button {
-            icon.source: "/images/favorite.png"
-            icon.width: 32
-            icon.height: 32
+        MusicIconButton {
+            iconSource: "/images/favorite.png"
         }
 
-        Button {
-            icon.source: "/images/repeat.png"
-            icon.width: 32
-            icon.height: 32
+        MusicIconButton {
+            iconSource: "/images/repeat.png"
         }
 
         // 实现内边距

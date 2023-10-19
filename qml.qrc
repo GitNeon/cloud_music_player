@@ -4,5 +4,6 @@
         <file>TopBar.qml</file>
         <file>Content.qml</file>
         <file>BottomBar.qml</file>
+        <file>MusicIconButton.qml</file>
     </qresource>
 </RCC>

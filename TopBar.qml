@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts
 import QtQuick.Controls 2.5
+import QtQuick.Window
 
 ToolBar {
     width: parent.width
@@ -25,8 +26,13 @@ ToolBar {
         }
 
         ToolButton {
+            id: smallWindow
             icon.source: "/images/small-window.png"
-            onClicked: function () {}
+            onClicked: function () {
+                setPlayerSize(330, 650)
+                smallWindow.visible = false
+                normalWindow.visible = true
+            }
             ToolTip {
                 visible: parent.hovered
                 text: "小窗播放"
@@ -37,6 +43,7 @@ ToolBar {
         }
 
         ToolButton {
+            id: normalWindow
             icon.source: "/images/exit-small-window.png"
             onClicked: function () {}
             ToolTip {
@@ -62,5 +69,14 @@ ToolBar {
             icon.source: "/images/power.png"
             onClicked: function () {}
         }
+    }
+
+    function setPlayerSize(width, height) {
+        window.width = width
+        window.height = height
+        window.x = (Screen.desktopAvailableWidth - window.width) / 2
+        window.y = (Screen.desktopAvailableHeight - window.height) / 2
+        smallWindow.visible = false
+        normalWindow.visible = true
     }
 }
