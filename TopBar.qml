@@ -45,7 +45,11 @@ ToolBar {
         ToolButton {
             id: normalWindow
             icon.source: "/images/exit-small-window.png"
-            onClicked: function () {}
+            onClicked: function () {
+                setPlayerSize(1200, 800)
+                smallWindow.visible = true
+                normalWindow.visible = false
+            }
             ToolTip {
                 visible: parent.hovered
                 text: "退出小窗播放"
@@ -66,8 +70,46 @@ ToolBar {
         }
 
         ToolButton {
+            id: fullScreenBtn
+            icon.source: "/images/full-screen.png"
+            ToolTip {
+                visible: parent.hovered
+                text: "全屏"
+                background: Rectangle {
+                    color: "lightgray"
+                }
+            }
+            onClicked: function () {
+                window.visibility = Window.Maximized
+                fullScreenBtn.visible = false
+                smallScreenBtn.visible = true
+            }
+        }
+
+        ToolButton {
+            id: smallScreenBtn
+            icon.source: "/images/small-screen.png"
+            visible: false
+            ToolTip {
+                visible: parent.hovered
+                text: "退出全屏"
+                background: Rectangle {
+                    color: "lightgray"
+                }
+            }
+            onClicked: function () {
+                window.visibility = Window.AutomaticVisibility
+                setPlayerSize(1200, 800)
+                fullScreenBtn.visible = true
+                smallScreenBtn.visible = false
+            }
+        }
+
+        ToolButton {
             icon.source: "/images/power.png"
-            onClicked: function () {}
+            onClicked: function () {
+                Qt.quit()
+            }
         }
     }
 
