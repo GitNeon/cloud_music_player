@@ -15,7 +15,9 @@ ToolBar {
 
         ToolButton {
             icon.source: "/images/about.png"
-            onClicked: function () {}
+            onClicked: function () {
+                aboutPopup.visible = true
+            }
             ToolTip {
                 visible: parent.hovered
                 text: "关于本软件"
@@ -109,6 +111,60 @@ ToolBar {
             icon.source: "/images/power.png"
             onClicked: function () {
                 Qt.quit()
+            }
+        }
+    }
+
+    Popup {
+        id: aboutPopup
+        width: 300
+        height: 200
+        padding: 0
+        x: (window.width - aboutPopup.width) / 2
+        y: (window.height - aboutPopup.height) / 2
+        modal: true
+        visible: false
+
+        background: Rectangle {
+            color: '#f3f4f5'
+            radius: 3
+        }
+
+        contentItem: ColumnLayout {
+            spacing: 0
+            anchors.fill: parent
+
+            Rectangle {
+                color: "transparent"
+                Layout.fillWidth: true
+                height: aboutImage.height
+
+                Image {
+                    id: aboutImage
+                    source: "/images/music.png"
+                    anchors.centerIn: parent
+                }
+            }
+
+            Rectangle {
+                color: "transparent"
+                Layout.fillWidth: true
+                height: 40
+
+                Text {
+                    text: qsTr("Cloud Music Demo Player音乐播放器")
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: 16
+                    width: parent.width
+                }
+
+                Text {
+                    y: 20
+                    text: qsTr("作者：Fanx")
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: 16
+                    width: parent.width
+                }
             }
         }
     }
