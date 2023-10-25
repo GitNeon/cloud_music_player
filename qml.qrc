@@ -5,5 +5,10 @@
         <file>Content.qml</file>
         <file>BottomBar.qml</file>
         <file>MusicIconButton.qml</file>
+        <file>RecommendPageView.qml</file>
+        <file>SearchPageView.qml</file>
+        <file>LocalPageView.qml</file>
+        <file>HistoryPageView.qml</file>
+        <file>FavoritePageView.qml</file>
     </qresource>
 </RCC>
