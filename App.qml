@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Layouts
+import HttpUtil 1.0
 
 Window {
     id: window
@@ -9,11 +10,28 @@ Window {
     visible: true
     title: qsTr("Cloud Music Player")
 
+    HttpUtil {
+        id: http
+    }
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
         TopBar {}
         Content {}
         BottomBar {}
+    }
+
+    Component.onCompleted: {
+        testHttp()
+    }
+
+    function testHttp() {
+        function doRespone(reply) {
+            console.log(reply)
+            http.onReplySignal.disconnect(doRespone)
+        }
+        http.onReplySignal.connect(doRespone)
+        http.httpRequest("GET", "")
     }
 }

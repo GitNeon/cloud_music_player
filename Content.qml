@@ -40,72 +40,73 @@ RowLayout {
     //        "title": "专辑歌单",
     //        "componentName": "PlayListPageView"
     //    }
+    ListModel {
+        id: listModel
+    }
+
+    Component {
+        id: listItemDelegate
+        Rectangle {
+            id: itemBg
+            width: listView.width
+            height: 40
+            color: '#AA00AAAA'
+
+            RowLayout {
+                anchors.fill: parent
+                spacing: 1
+
+                Item {
+                    Layout.fillWidth: true
+                    Image {
+                        width: 20
+                        height: 20
+                        source: "/images/" + icon
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: 35
+                    }
+                    Text {
+                        id: txt1
+                        text: title
+                        anchors.centerIn: parent
+                        font.pixelSize: 14
+                    }
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: function () {
+                    itemBg.color = '#aa73a7ab'
+                }
+                onExited: function () {
+                    itemBg.color = '#AA00AAAA'
+                }
+                onClicked: function () {
+                    // 获取当前点击项的索引
+                    listView.currentIndex = index
+                    let currentIndex = listView.currentIndex
+                    // 通过索引获取当前点击项的数据
+                    let currentItem = listView.model.get(currentIndex)
+                    contentLoader.source = currentItem.componentName + ".qml"
+                }
+            }
+        }
+    }
+
     Frame {
         Layout.preferredWidth: 200
         Layout.fillHeight: true
         padding: 0
-
-        ListModel {
-            id: listModel
-        }
-
-        Component {
-            id: listItemDelegate
-            Rectangle {
-                id: itemBg
-                width: listView.width
-                height: 40
-                color: '#AA00AAAA'
-
-                RowLayout {
-                    anchors.fill: parent
-                    spacing: 1
-
-                    Item {
-                        Layout.fillWidth: true
-                        Image {
-                            width: 20
-                            height: 20
-                            source: "/images/" + icon
-                            anchors.verticalCenter: parent.verticalCenter
-                            x: 35
-                        }
-                        Text {
-                            id: txt1
-                            text: title
-                            anchors.centerIn: parent
-                            font.pixelSize: 14
-                        }
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: function () {
-                        itemBg.color = '#aa73a7ab'
-                    }
-                    onExited: function () {
-                        itemBg.color = '#AA00AAAA'
-                    }
-                    onClicked: function () {
-                        // 获取当前点击项的索引
-                        listView.currentIndex = index
-                        let currentIndex = listView.currentIndex
-                        // 通过索引获取当前点击项的数据
-                        let currentItem = listView.model.get(currentIndex)
-                        contentLoader.source = currentItem.componentName + ".qml"
-                    }
-                }
-            }
-        }
 
         ColumnLayout {
             anchors.fill: parent
 
             ListView {
                 id: listView
-                anchors.fill: parent
+                Layout.fillHeight: true
+                Layout.fillWidth: true
                 model: listModel
                 delegate: listItemDelegate
                 highlightFollowsCurrentItem: true

@@ -6,7 +6,7 @@ HttpUtil::HttpUtil(QObject *parent) : QObject(parent)
 {
     manager = new QNetworkAccessManager(this);
     //    QObject::connect(manager, &QNetworkAccessManager::finished, this, &HttpUtil::replySignal);
-    QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(httpResponse(QNetWorkReply*)));
+    QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 }
 
 void HttpUtil::httpRequest(QString method,QString url) {
@@ -17,7 +17,7 @@ void HttpUtil::httpRequest(QString method,QString url) {
     }
 }
 
-void HttpUtil::httpResponse(QNetworkReply *reply) {
+void HttpUtil::replyFinished(QNetworkReply *reply) {
     QString result = reply->readAll();
     emit replySignal(result);
 }
