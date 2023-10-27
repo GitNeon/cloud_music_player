@@ -50,7 +50,7 @@ Rectangle {
             //            }
             Text {
                 text: "歌曲名称-歌手"
-                anchors.left: musicSlider.left + 5
+                anchors.left: musicSlider.left
                 anchors.bottom: musicSlider.top
                 Layout.bottomMargin: 15
             }
