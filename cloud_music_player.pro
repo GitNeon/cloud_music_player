@@ -1,5 +1,22 @@
+# 获取Qt的版本号
+QT_VERSION = $$[QT_VERSION]
+
+# 将版本号分割成主版本、次版本和修订版本
+QT_VERSION_PARTS = $$split(QT_VERSION, .)
+QT_VER_MAJOR = $$member(QT_VERSION_PARTS, 0)
+QT_VER_MINOR = $$member(QT_VERSION_PARTS, 1)
+QT_VER_PATCH = $$member(QT_VERSION_PARTS, 2)
+
 QT += quick
 QT += network
+
+
+# 检查Qt的版本号是否是6.6
+equals(QT_VER_MAJOR, 6):equals(QT_VER_MINOR, 6) {
+    message("Qt version is 6.6")
+    # 加载core5compat模块
+    QT += core5compat
+}
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
