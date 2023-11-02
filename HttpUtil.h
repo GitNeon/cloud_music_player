@@ -19,7 +19,7 @@ public:
 private:
     QNetworkAccessManager* manager;
     // QString BASE_URL = "http://localhost:3000/api";
-    QString BASE_URL = "http://www.baidu.com/";
+    QString BASE_URL = "http://localhost:3000";
 signals:
     void replySignal(QString reply);
 };

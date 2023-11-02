@@ -95,13 +95,23 @@ RowLayout {
         }
     }
 
-    Frame {
+    Rectangle {
         Layout.preferredWidth: 200
         Layout.fillHeight: true
-        padding: 0
 
         ColumnLayout {
             anchors.fill: parent
+
+            Item {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 150
+                MusicRoundImage {
+                    anchors.centerIn: parent
+                    height: 100
+                    width: 100
+                    borderRadius: 100
+                }
+            }
 
             ListView {
                 id: listView
@@ -125,7 +135,7 @@ RowLayout {
     Rectangle {
         Layout.fillWidth: true
         Layout.fillHeight: true
-        color: "pink"
+        color: "transparent"
         Loader {
             id: contentLoader
         }

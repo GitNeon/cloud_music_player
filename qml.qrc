@@ -10,5 +10,7 @@
         <file>LocalPageView.qml</file>
         <file>HistoryPageView.qml</file>
         <file>FavoritePageView.qml</file>
+        <file>MusicRoundImage.qml</file>
+        <file>MusicBannerView.qml</file>
     </qresource>
 </RCC>
