@@ -12,5 +12,6 @@
         <file>FavoritePageView.qml</file>
         <file>MusicRoundImage.qml</file>
         <file>MusicBannerView.qml</file>
+        <file>MusicHotView.qml</file>
     </qresource>
 </RCC>
