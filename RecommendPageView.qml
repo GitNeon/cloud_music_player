@@ -12,9 +12,9 @@ ScrollView {
     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
     ColumnLayout {
+        id: cl
         spacing: 0
-        anchors.fill: parent
-
+        x: window.width > 1200 ? (scrollView.width - cl.implicitWidth) / 2 : 0
         Item {
             id: bannerItem
             Layout.fillWidth: true
@@ -24,6 +24,7 @@ ScrollView {
                 height: parent.height
                 id: bannerView
                 anchors.centerIn: parent
+                bannerList: bannerRequest.dataList
             }
         }
 
@@ -46,34 +47,14 @@ ScrollView {
                 anchors.fill: parent
             }
         }
-    }
 
-    Component.onCompleted: {
-        getBannerList()
-    }
-
-    function getBannerList() {
-        function doRespone(reply) {
-            //            console.log('bannerList:', reply)
-            var banners = JSON.parse(reply).banners
-            bannerView.bannerList = banners
-            http.onReplySignal.disconnect(doRespone)
-
-            // 由于异步原因，这里暂时这么放解决两个请求的问题
-            getHotViewList()
+        NetworkRequest {
+            id: bannerRequest
+            requestUrl: "/banner"
+            key: "banners"
+            Component.onCompleted: {
+                bannerRequest.getDataList()
+            }
         }
-        http.onReplySignal.connect(doRespone)
-        http.httpRequest("GET", "/banner")
-    }
-
-    function getHotViewList() {
-        function doRespone2(reply) {
-            var resultList = JSON.parse(reply)
-            hotView.hotViewList = resultList.playlists
-            //            console.log(JSON.stringify(hotView.hotViewList))
-            http.onReplySignal.disconnect(doRespone2)
-        }
-        http.onReplySignal.connect(doRespone2)
-        http.httpRequest("GET", "/top/playlist/highquality?limit=15")
     }
 }

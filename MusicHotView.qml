@@ -14,18 +14,39 @@ Item {
         spacing: 10
 
         Repeater {
-            model: 20
+            model: listModel
             Rectangle {
-                color: "lightpink"
+                required property int index
+                color: "transparent"
                 width: 192
                 height: 192
-
-                //                MusicRoundImage {
-                //                    required property int index
-                //                    height: 180
-                //                    width: 180
-                //                }
+                MusicRoundImage {
+                    id: _rd
+                    height: 160
+                    width: 190
+                    imgUrl: listModel.get(index).coverImgUrl
+                }
+                Text {
+                    text: listModel.get(index).name
+                    font.pixelSize: 14
+                    y: _rd.height + 5
+                    elide: Text.ElideRight
+                    clip: true
+                    width: parent.width
+                }
             }
+        }
+    }
+
+    NetworkRequest {
+        id: hotViewRequest
+        requestUrl: "/top/playlist/highquality?limit=15"
+        key: "playlists"
+        Component.onCompleted: {
+            hotViewRequest.getDataList()
+        }
+        onCustomDataListChanged: function (data) {
+            listModel.append(data)
         }
     }
 }

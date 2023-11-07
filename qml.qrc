@@ -13,5 +13,6 @@
         <file>MusicRoundImage.qml</file>
         <file>MusicBannerView.qml</file>
         <file>MusicHotView.qml</file>
+        <file>NetworkRequest.qml</file>
     </qresource>
 </RCC>

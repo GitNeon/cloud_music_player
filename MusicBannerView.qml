@@ -108,7 +108,6 @@ Rectangle {
 
     function getLeftImgSrc() {
         const pos = (current - 1 + bannerList.length) % bannerList.length
-        console.log("left: ", pos)
         return bannerList.length ? bannerList[pos].imageUrl : ""
     }
 
