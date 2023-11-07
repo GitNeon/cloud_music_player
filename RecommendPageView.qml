@@ -14,22 +14,11 @@ ScrollView {
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
-        Item {
-            Layout.fillWidth: true
-            height: t1.height + 2
-            //            color: "pink"
-            Text {
-                id: t1
-                text: qsTr("推荐内容")
-                font.pointSize: 18
-            }
-        }
 
         Item {
             id: bannerItem
             Layout.fillWidth: true
-            height: 200
-            //            color: "skyblue"
+            height: 260
             MusicBannerView {
                 width: 1000
                 height: parent.height
